@@ -84,4 +84,6 @@ if __name__ == '__main__':
     upload_playlist = get_channel_uploads_playlist_id( youtube_object ,
         test_channel)
     all_videos = get_playlist_video_ids( youtube_object , upload_playlist)
-    print(json.dumps(get_videos_stats( youtube_object, all_videos) ))
+    all_videos_with_stats = get_videos_stats( youtube_object, all_videos)
+    more_5000_views = list(filter(lambda x: int(x['statistics']['viewCount']) > 5000 , all_videos_with_stats ) )
+    print(json.dumps(more_5000_views ))
