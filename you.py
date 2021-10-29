@@ -1,3 +1,7 @@
+
+import sys
+sys.stdout.reconfigure(encoding='utf-8')
+
 from googleapiclient.discovery import build
 
 
@@ -58,7 +62,7 @@ if __name__ == '__main__':
     # Create YouTube Object
     youtube_object = build('youtube', 'v3', developerKey=DEV_YOUTUBE_API_KEY)
     test_channel = "UC3rqtfL5_T6dohB03peYKXg"
-    test_channel = 'UC3rqtfL5_T6dohB03peYKXg'
+    test_channel = 'UCvqbFHwN-nwalWPjPUKpvTA'
 
     upload_playlist = get_channel_uploads_playlist_id( youtube_object ,
         test_channel)
