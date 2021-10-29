@@ -25,7 +25,8 @@ def get_channel_uploads_playlist_id(youtube, channel_id):
 
 def get_playlist_video_ids(youtube, playlist_id):
     request = youtube.playlistItems().list(
-        fields = 'nextPageToken,items/snippet/resourceId',
+        #fields = 'nextPageToken,items/snippet/resourceId,items/snippet/title',
+        fields = 'nextPageToken,items/snippet',
         playlistId = playlist_id,
         part = 'snippet',
         maxResults = 50
@@ -35,9 +36,9 @@ def get_playlist_video_ids(youtube, playlist_id):
     is_video = lambda item: \
         item['snippet']['resourceId']['kind'] == 'youtube#video'
     video_id = lambda item: \
-        item['snippet']['resourceId']['videoId']
-    video_title = lambda item: \
-        item['snippet']['resourceId']['videoId']        
+         { 'id': item['snippet']['resourceId']['videoId'] , 
+           'title': item['snippet']['title'] , 
+           'publish':item['snippet']['publishedAt']  } 
 
     while request:
         response = request.execute()
